@@ -3,6 +3,8 @@
 class LanguageGame
 {
     private array $words;
+    private Word $word; 
+    private Player $player;
 
     public function __construct()
     {
@@ -14,16 +16,42 @@ class LanguageGame
         }
     }
 
+    private function generateRandomWord(): void
+    {
+        $this->word = $this->words[rand(0, count($this->words)-1)];
+        $_SESSION['currentWord'] = $this->word; 
+    }
+
+
     public function run(): void
     {
-        // TODO: check for option A or B
+        session_start();
+        if(isset($_SESSION['player'])) $this->player = $_SESSION["player"];
+        else {
+            $this->player = new Player("Johnny");
+            $_SESSION['player'] = $this->player;
+        }
 
-        // Option A: user visits site first time (or wants a new word)
-        // TODO: select a random word for the user to translate
+        echo $this->player->getName();
+        echo "<br>";
+        echo "<p>Score: <strong>" . $this->player->getScore() . "</strong></p>";
 
-        // Option B: user has just submitted an answer
-        // TODO: verify the answer (use the verify function in the word class) - you'll need to get the used word from the array first
-        // TODO: generate a message for the user that can be shown
-
+        if(empty($_POST)) {
+            echo "geen post";
+            $this->generateRandomWord();
+            echo "<h1>Translate <i>this</i>!!!</h1>";
+            echo "<h2>" . $this->word->getWord() . "</h2>";
+        } else {
+            echo "post";
+            $answer = $_POST["translationBar"];
+            if ($_SESSION['currentWord']->verify($answer)) {
+                echo "<p>Good job mate!</p>";
+                $this->player->raiseScore();
+            } else { 
+                echo "<p><strong>You dumb wanker!</strong></p>";
+            }
+            echo "<p> Right answer: " . $_SESSION['currentWord']->getTranslation() . "</p>";
+            echo "<p> Your answer: " . $answer . "</p>";
+        }
     }
 }

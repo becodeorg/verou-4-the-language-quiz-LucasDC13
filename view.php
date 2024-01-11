@@ -1,3 +1,5 @@
+<?php ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,11 +10,16 @@
 	<title>Game</title>
 </head>
 <body>
-	<form method="POST">
-        <h1>Translate <i>this</i>!!!</h1>
-        <?= "<h2>" /*. WOORD UIT WOORDENLIJST*/ . "</h2>"; ?>
-        <label for="translationBar">Translation?</label>
-        <input type="text" id="translationBar" name="translationBar" value="Enter word here...">
-    </form>
+    <main>
+        <form method="POST">
+            <?php if (empty($_POST)): ?>
+                <label for="translationBar">Translation?</label>
+                <input type="text" id="translationBar" name="translationBar" placeholder="Enter word here...">
+                <button type="submit">Submit!</submit>
+            <?php else: ?>
+                <button type="submit">New Word!</submit>
+            <?php endif;?>
+        </form>
+    </main>
 </body>
 </html>
