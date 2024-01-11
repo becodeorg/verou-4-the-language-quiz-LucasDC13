@@ -1,4 +1,5 @@
 <?php
+// Don't change anything in this file
 
 // Require the correct variable type to be used (no auto-converting)
 declare(strict_types = 1);
@@ -15,7 +16,6 @@ require_once 'classes/LanguageGame.php';
 require_once 'classes/Word.php';
 
 // Start the game
-// Don't change anything in this file
 // The LanguageGame class will be your starting point
 $game = new LanguageGame();
 $game->run();

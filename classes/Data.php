@@ -96,7 +96,7 @@ class Data
             'rendezvous' => 'ontmoeting',
             'sumptuous' => 'luxueus',
             'apprehension' => 'bezorgdheid',
-            'unabashed' => 'ongeneerd',
+            'unabashed' => 'schaamteloos',
             'verdant' => 'groen',
             'winsome' => 'aantrekkelijk',
             'hospitable' => 'gastvrij',

@@ -8,6 +8,11 @@
 	<title>Game</title>
 </head>
 <body>
-	<!-- TODO: add a form for the user to play the game -->
+	<form method="POST">
+        <h1>Translate <i>this</i>!!!</h1>
+        <?= "<h2>" /*. WOORD UIT WOORDENLIJST*/ . "</h2>"; ?>
+        <label for="translationBar">Translation?</label>
+        <input type="text" id="translationBar" name="translationBar" value="Enter word here...">
+    </form>
 </body>
 </html>
