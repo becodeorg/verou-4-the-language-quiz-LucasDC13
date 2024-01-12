@@ -11,19 +11,25 @@ class Word
         $this->translation = $translation;
     }
 
-    public function verify(string $answer): bool
-    {
-        if (strtolower($this->translation) === strtolower($answer)) return true;
-        else return false;
-        // Bonus (hard): can you allow answers with small typo's (max one character different)?
-    }
-
-    public function getWord() 
+    public function getWord()
     {
         return $this->word;
     }
-    public function getTranslation() 
+
+    public function getTranslation()
     {
         return $this->translation;
+    }
+
+    public function verify(string $answer): bool
+    {
+        $distance = levenshtein(strtolower($this->translation), strtolower($answer));
+        $threshold = 1;
+
+        if ($distance <= $threshold) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

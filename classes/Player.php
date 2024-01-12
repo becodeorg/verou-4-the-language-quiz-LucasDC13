@@ -1,26 +1,49 @@
 <?php
 
 class Player
-{   
-    // Properties
+{
     private string $name;
-    private int $score;
 
-    // Constructor
+    private int $rightAnswers;
+    private int $wrongAnswers;
+
     public function __construct(string $name)
     {
-        $this->name = "👤 " . $name;
-        $this->score = 0; 
+        // TODO: add 👤 automatically to their name
+        if ($name !== "") $this->name = "👤 " . $name;
+        else $this->name = "👤 Jaqen";
+        $this->rightAnswers = 0;
+        $this->wrongAnswers = 0;
     }
 
-    // Methods
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
-    public function getScore() {
-        return $this->score;
+
+    public function getRightAnswers()
+    {
+        return $this->rightAnswers;
+    } 
+    
+    public function getWrongAnswers()
+    {
+        return $this->wrongAnswers;
     }
-    public function raiseScore() {
-        $this->score += 1;
+
+    public function incrementScore(): void
+    {
+        $this->rightAnswers += 1;
+    }
+
+    public function incrementWrongScore(): void
+    {
+        $this->wrongAnswers += 1;
+    }
+
+    public function resetScore(): void 
+    {
+        $this->rightAnswers = 0;
+        $this->wrongAnswers = 0;
     }
 }

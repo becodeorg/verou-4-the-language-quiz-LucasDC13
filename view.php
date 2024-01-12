@@ -11,15 +11,34 @@
 </head>
 <body>
     <main>
-        <form method="POST">
-            <?php if (empty($_POST)): ?>
-                <label for="translationBar">Translation?</label>
-                <input type="text" id="translationBar" name="translationBar" placeholder="Enter word here...">
-                <button type="submit">Submit!</submit>
+    <form method="POST">
+            <?php if (isset($player)): ?>
+                <h1>Translate <i>this</i>!!!</h1>
+                <h2>Player: <?= $player->getName(); ?></h2>
+                <h2>Word: <?= $word->getWord(); ?></h2>
+                <p>Right answers: <?= $player->getRightAnswers(); ?></p>
+                <p>Wrong answers: <?= $player->getWrongAnswers(); ?></p>
+
+                <?php if (empty($_POST) || isset($_POST["nickname"])): ?>
+                    <label for="translationBar">Translation?</label>
+                    <input type="text" id="translationBar" name="translationBar" placeholder="Enter word here...">
+                    <button type="submit">Submit!</button>
+
+                <?php elseif (!isset($_POST["gameover"])): ?>
+                    <button type="submit">New word!</button>
+                            
+                <?php endif;?>
+                <p><?= $_SESSION["message"] ?></p>
+                <button name="reset" type="submit">Reset</button>
+                <button name="new" type="submit">New Player</button>
+
             <?php else: ?>
-                <button type="submit">New Word!</submit>
-            <?php endif;?>
-        </form>
+                <h2>Please choose a nickname!</h2>
+                <label for="nickname">Nickname:</label>
+                <input type="text" id="nickname" name="nickname" placeholder="Enter a nickname here...">
+                <button type="submit">Submit!</submit>
+
+            <?php endif; ?>
     </main>
 </body>
 </html>
